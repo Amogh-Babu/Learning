@@ -24,6 +24,7 @@ mongoose
 
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    console.log(__dirname);
+    res.render('form');
 });
 
