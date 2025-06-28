@@ -22,9 +22,27 @@ mongoose
     })
 
 
+app.post('/submit-event', (req, res) => {
+    const event = new Event(req.body);
+    event.save()
+        .then((result) => {
+            console.log(result);
+            res.redirect('/');
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+});
 
 app.get('/', (req, res) => {
-    console.log(__dirname);
-    res.render('form');
-});
+    Event.find()
+        .then((result) => {
+            res.render('homepage', {title: 'All events', events: result })
+        })
+        .catch((err) => {
+            console.error(err);
+        })
+})
+
+
 
